@@ -1,0 +1,21 @@
+
+name: Inspect CalciumScore
+
+on:
+  workflow_dispatch:
+
+jobs:
+  inspect:
+    runs-on: macos-15
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Inspect project files
+        run: |
+          echo "=== CalciumScore files ==="
+          find CalciumScore -maxdepth 3 -type f | head -80
+          echo "=== Xcode projects ==="
+          find . -name "*.xcodeproj" -type d
+          echo "=== Xcode version ==="
+          xcodebuild -version
